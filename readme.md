@@ -76,8 +76,31 @@ SleepShift.drawMyCal(28, 20, -6);
 
 ### Displaying other things
 
-You can initialize SleepShift with these properties before `drawMyCal()`
-is run.
+To customize it further, you can use the `init()` function before running
+`drawMyCal()`.
+
+#### Example
+
+```javascript
+SleepShift.init({
+  title: "My normal week",
+  sleepcolor: "777",
+  mytimezonename: "Eastern",
+  tzhash: {
+    "Mountain":     -7,
+    "Frankfurt":     1,
+    "+00:30 India":  5
+  },
+  cellstyles: {
+    "workout": ["6af",[37,91,149]],
+    "my-work": ["6fd",[0,164,165,166,167]]
+  },
+  debug: false
+});
+SleepShift.drawMyCal();
+```
+
+#### Reference
 
 |    Property    |                      Format                               |
 | -------------- | --------------------------------------------------------- |
@@ -115,25 +138,6 @@ is run.
   To see the cell numbers, set debug to true.</dd>
 </dl>
 
-#### Example
-
-```javascript
-SleepShift.init({
-  title: "My normal week",
-  sleepcolor: "777",
-  mytimezonename: "Eastern",
-  tzhash: {
-    "Mountain":     -7,
-    "Eastern":      -5,
-    "+00:30 India":  5
-  },
-  cellstyles: {
-    "workout": ["6af",[37,91,149]],
-    "my-work": ["6fd",[0,164,165,166,167]]
-  },
-  debug: false
-});
-```
 The values in the `index.html` file were used to display the picture above.
 
 ---

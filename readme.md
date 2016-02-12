@@ -153,7 +153,9 @@ So, there ya go. Have fun!
 
 ---
 <a name="sup1"></a><sup>1</sup>Sunrise and sunset are determined by your geolocation.
-And browser geolocation is only available from web pages hosted on a web server.
+And browser geolocation is not always available unless the web page is hosted on a web
+server. Yeah, don't holler at me, that's just the way it works. You can, of course,
+install a web server on your local machine and host it from there.
 
 
 

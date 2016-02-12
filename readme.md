@@ -41,7 +41,8 @@ With that, you'll get a default [xkcd 28-hour day][xkcd] with no extras.
 
 ### Tweaking the sleep hours
 
-You can add values to `drawMyCal()` to change your day lengths and shift times.
+You can add values to `drawMyCal()` to change the length and shift the
+times of your days.
 ```javascript
 SleepShift.drawMyCal(totalhours, wakehours, offset)
 ```

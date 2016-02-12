@@ -7,7 +7,7 @@ the right schedule that worked for me. But you can adjust the numbers to
 display any regular sleep schedule that fits evenly in a week.
 
 It's also got an hourly world clock. And, if you host it from a web server,
-it'll show sunrise and sunset.<sup>1</sup>
+it'll show sunrise and sunset.<sup><a href="#sup1">1</a></sup>
 
 ![picture of the sleepshift calendar](sleepshift.png)
 
@@ -41,7 +41,7 @@ With that, you'll get a default [xkcd 28-hour day][xkcd] with no extras.
 
 ### Tweaking the sleep hours
 
-To do that, add values to `SleepShift.drawMyCal()`.
+You can add values to `SleepShift.drawMyCal()`.
 ```javascript
 SleepShift.drawMyCal(totalhours, wakehours, offset)
 ```
@@ -71,22 +71,22 @@ SleepShift.drawMyCal(24, 16, 7);
 
 The default with no values is the same as:
 ```javascript
-`SleepShift.drawMyCal(28, 20, -6)`.
+SleepShift.drawMyCal(28, 20, -6);
 ```
 
 ### Displaying other things
 
-Before running the `drawMyCal()` function, you can initialize SleepShift
-with various properties.
+You can initialize SleepShift with these properties before `drawMyCal()`
+is run.
 
-|    Property    |                      Format                      |
-| -------------- | ------------------------------------------------ |
-| title          |  string                                          |
-| mytimezonename |  string                                          |
-| sleepcolor     | "0x[0x]0x[0x]0x[0x]"                             |
-| tzhash         | { "time zone name": signed-integer offset, ... } | 
-| cellstyles     | { "name": ["color", [list of cells]], ... }      |
-| debug          | true\|false                                      |
+|    Property    |                      Format                               |
+| -------------- | --------------------------------------------------------- |
+| title          | string                                                    |
+| mytimezonename | string                                                    |
+| sleepcolor     | string - "0x[0x]0x[0x]0x[0x]"                             |
+| tzhash         | object - { "time zone name": signed-integer offset, ... } | 
+| cellstyles     | object - { "name": ["color", [list of cells]], ... }      |
+| debug          | boolean - true\|false                                     |
 
 <dl>
   <dt>title</dt>
@@ -98,10 +98,10 @@ with various properties.
   gray "777" or "8a8a8a"?</dd>
   <dt>tzhash</dt>
   <dd>To have a time zone shown on the hourly world clock, give it a name,
-  determine <a href="https://en.wikipedia.org/wiki/List_of_UTC_time_offsets">its
+  determine <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">its
   hour offset</a>, and add 'em to this list.</dd>
-  <p>**Note:** There's no daylight savings feature yet. When the time comes, you
-  gotta change affected values (along with all the clocks in your house).
+  <p><b>Note:</b> There's no daylight savings feature yet. When the time comes,
+  you gotta change affected values (along with all the clocks in your house).
   :O)</p></dd>
   <dt>cellstyles</dt>
   <dd>Use this property to add other events (work hours, etc.).
@@ -121,7 +121,7 @@ with various properties.
 SleepShift.init({
   title: "My normal week",
   sleepcolor: "777",
-  mytimezonename: "Pacific",
+  mytimezonename: "Eastern",
   tzhash: {
     "Mountain":     -7,
     "Eastern":      -5,
@@ -130,20 +130,20 @@ SleepShift.init({
   cellstyles: {
     "workout": ["6af",[37,91,149]],
     "my-work": ["6fd",[0,164,165,166,167]]
-  }
+  },
+  debug: false
 });
 ```
 The values in the `index.html` file were used to display the picture above.
+
+---
+<a name="sup1"></a><sup>1</sup>Sunrise and sunset are determined by your geolocation.
+And browser geolocation is only available from web pages hosted on a web server.
 
 ## License
 
 [The MIT License (MIT)][lic]
 
----
-<sup>1</sup>Sunrise and sunset are determined by your geolocation. And browser
-geolocation is only available from web pages hosted on a web server.
-
 
 [xkcd]: https://xkcd.com/320/
-[tz]: 
 [lic]: LICENSE

@@ -47,7 +47,7 @@ With that, your table will show the same sleep times as the
 
 ![xkcd comic 320 about 28-hour days][xkcdimg]
 
-### Tweaking the sleep hours
+## Tweaking the sleep hours
 
 You can add values to `drawMyCal()` to change the length and shift the
 times of your days.
@@ -84,7 +84,7 @@ The default with no values is the same as:
 SleepShift.drawMyCal(28, 20, -6);
 ```
 
-### Displaying other things
+## Displaying other things
 
 To customize it further, you can use the `init()` function before running
 `drawMyCal()`.

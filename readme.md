@@ -41,7 +41,8 @@ With that, you'll get a default [xkcd 28-hour day][xkcd] with no extras.
 
 ### Tweaking the sleep hours
 
-You can add values to `drawMyCal()` to change your day lengths and shift times.
+You can add values to `drawMyCal()` to change the length and shift the
+times of your days.
 ```javascript
 SleepShift.drawMyCal(totalhours, wakehours, offset)
 ```
@@ -83,7 +84,7 @@ To customize it further, you can use the `init()` function before running
 
 ```javascript
 SleepShift.init({
-  title: "My normal week",
+  title: "My crazy week",
   sleepcolor: "777",
   mytimezonename: "Eastern",
   tzhash: {
@@ -94,22 +95,21 @@ SleepShift.init({
   cellstyles: {
     "workout": ["6af",[37,91,149]],
     "my-work": ["6fd",[0,164,165,166,167]]
-  },
-  debug: false
+  }
 });
 SleepShift.drawMyCal();
 ```
 
 #### Reference
 
-|    Property    |                      Format                               |
-| -------------- | --------------------------------------------------------- |
-| title          | string                                                    |
-| mytimezonename | string                                                    |
-| sleepcolor     | string - "0x[0x]0x[0x]0x[0x]"                             |
-| tzhash         | object - { "time zone name": signed-integer offset, ... } | 
-| cellstyles     | object - { "name": ["color", [list of cells]], ... }      |
-| debug          | boolean - true\|false                                     |
+|    Property    |                         Format                            |            Default value             |
+| -------------- | --------------------------------------------------------- | ------------------------------------ |
+| title          | string                                                    | "My 28-hour days (with world clock)" |
+| mytimezonename | string                                                    | ""                                   |
+| sleepcolor     | string - "0x[0x]0x[0x]0x[0x]"                             | "87a"                                |
+| tzhash         | object - { "time zone name": signed-integer offset, ... } | {}                                   |
+| cellstyles     | object - { "name": ["color", [list of cells]], ... }      | {}                                   |
+| debug          | boolean                                                   | false                                |
 
 <dl>
   <dt>title</dt>

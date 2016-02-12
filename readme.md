@@ -37,7 +37,10 @@ it'll show sunrise and sunset.<sup><a href="#sup1">1</a></sup>
     });
   </script>
   ```
+
 With that, you'll get a default [xkcd 28-hour day][xkcd] with no extras.
+
+![xkcd comic 320 about 28-hour days][xkcdimg]
 
 ### Tweaking the sleep hours
 
@@ -150,10 +153,8 @@ So, there ya go. Have fun!
 <a name="sup1"></a><sup>1</sup>Sunrise and sunset are determined by your geolocation.
 And browser geolocation is only available from web pages hosted on a web server.
 
-## License
-
-[The MIT License (MIT)][lic]
 
 
 [xkcd]: https://xkcd.com/320/
+[xkcdimg]: http://imgs.xkcd.com/comics/28_hour_day.png
 [lic]: LICENSE

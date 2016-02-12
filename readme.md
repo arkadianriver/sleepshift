@@ -57,9 +57,10 @@ SleepShift.drawMyCal(totalhours, wakehours, offset)
   <dd>Number of hours in <i>your</i> day that you want to be awake.</dd>
 
   <dt>offset</dt>
-  <dd>Adjust -n/n to the hour -Sun or +Mon that you want your
-  week to start. Examples:
-  <ul><li>To start your week at midnight Monday, use 0.</li>
+  <dd>The week starts at 00:00 Monday (cell 0). Adjust the offset
+  to the hour on -Sun or +Mon when you first wake up during the
+  week. Examples:
+  <ul><li>To start your week at midnight Sunday, use 0.</li>
       <li>To start your week at 8 a.m. on Monday, use 8.</li>
       <li>To start your week at 7 p.m. on Sunday, use -5.</li>
   </ul></dd>

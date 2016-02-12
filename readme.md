@@ -84,7 +84,7 @@ The default with no values is the same as:
 SleepShift.drawMyCal(28, 20, -6);
 ```
 
-## Displaying other things
+## Showing more stuff
 
 To customize it further, you can use the `init()` function before running
 `drawMyCal()`.

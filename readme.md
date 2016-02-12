@@ -2,36 +2,46 @@
 
 > Display a week of 21, 24, or 28-hour days (with a world clock)
 
-Originally created to display the hours of a 28-hour day weekly
-schedule, you can fiddle with the hours in SleepShift to display
-various sleep schedules that fit evenly within a normal week.
+Originally created to shift the sleep times of my 28-hour days, to find
+the right schedule that worked for me. But you can adjust the numbers to
+display any regular sleep schedule that fits evenly in a week.
 
-It also displays a world clock. And, if you host it from a web server,
-it will show sunrise and sunset.
+It's also got an hourly world clock. And, if you host it from a web server,
+it'll show sunrise and sunset.<sup>1</sup>
 
 ![picture of the sleepshift calendar](sleepshift.png)
 
-The settings to display what's in the picture are in `index.html`.
+## To use it
 
-## Usage
+0. Throw these files on a web server: `sleepshift.js`, `sleepshift.css`
 
-If you want to display the default 28-hour day with no extras, init
-with your time zone and run the `drawMyCal()` function.
+0. Slap this code in your web page:
 
-```javascript
-$(document).ready(function(){
+  In the header:
+  ```html
+  <link rel="stylesheet" type="text/css" href="sleepshift.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script type="text/javascript" src="sleepshift.js"></script>
+  ```
 
-  SleepShift.init({mytimezonename: "Pacific"});
-  SleepShift.drawMyCal();
+  In the body, where you want it displayed:
+  ```html
+  <div id="sleepshift"></div>
+  ```
 
-});
-```
+  In the body, at the very bottom:
+  ```html
+  <script type="text/javascript">
+    $(document).ready(function(){
+      SleepShift.drawMyCal();
+    });
+  </script>
+  ```
+With that, you'll get a default [xkcd 28-hour day][xkcd] with no extras.
 
-### Customizing the calendar to your sleep schedule
+### Tweaking the sleep hours
 
-You can provide arguments to `SleepShift.drawMyCal()` to draw your own
-sleep schedule.
-
+To do that, add values to `SleepShift.drawMyCal()`.
 ```javascript
 SleepShift.drawMyCal(totalhours, wakehours, offset)
 ```
@@ -55,83 +65,85 @@ SleepShift.drawMyCal(totalhours, wakehours, offset)
 </dl>
 
 A normal person's week ;-)
-
 ```javascript
 SleepShift.drawMyCal(24, 16, 7);
 ```
 
-With a different sleep schedule, you'll want to give your calendar a
-different title.
-
+The default with no values is the same as:
 ```javascript
-SleepShift.init({
-  mytimezonename: "Pacific",
-  title: "My normal week"
-});
+`SleepShift.drawMyCal(28, 20, -6)`.
 ```
 
-The default with no arguments is the same as `SleepShift.drawMyCal(28, 20, -6)`.
+### Displaying other things
 
-### Displaying time zones
+Before running the `drawMyCal()` function, you can initialize SleepShift
+with various properties.
 
-Add [time zone names and offsets][tz] to the `tzhash` init property.
+|    Property    |                      Format                      |
+| -------------- | ------------------------------------------------ |
+| title          |  string                                          |
+| mytimezonename |  string                                          |
+| sleepcolor     | "0x[0x]0x[0x]0x[0x]"                             |
+| tzhash         | { "time zone name": signed-integer offset, ... } | 
+| cellstyles     | { "name": ["color", [list of cells]], ... }      |
+| debug          | true\|false                                      |
+
+<dl>
+  <dt>title</dt>
+  <dd>Whatever you wanna call the table.</dd>
+  <dt>mytimezonename</dt>
+  <dd>Where you're at. Prints a statement below the table with this value.</dd>
+  <dt>sleepcolor</dt>
+  <dd>So, you don't like slate purple, eh? Change it here, maybe something like
+  gray "777" or "8a8a8a"?</dd>
+  <dt>tzhash</dt>
+  <dd>To have a time zone shown on the hourly world clock, give it a name,
+  determine <a href="https://en.wikipedia.org/wiki/List_of_UTC_time_offsets">its
+  hour offset</a>, and add 'em to this list.</dd>
+  <p>**Note:** There's no daylight savings feature yet. When the time comes, you
+  gotta change affected values (along with all the clocks in your house).
+  :O)</p></dd>
+  <dt>cellstyles</dt>
+  <dd>Use this property to add other events (work hours, etc.).
+  For each event you want to add to the table, provide its name, its HTML
+  "#" color value (either 3 or 6 hex digits), and the cell numbers to apply
+  the event to. For the name, separate words with hyphens. In the color key
+  that's displayed below the table, hyphens become spaces and the words are
+  init-capped.</dd>
+  <dt>debug</dt>
+  <dd>"But wait, how do I know what the cell numbers are?" Great question.
+  To see the cell numbers, set debug to true.</dd>
+</dl>
+
+#### Example
 
 ```javascript
 SleepShift.init({
+  title: "My normal week",
+  sleepcolor: "777",
   mytimezonename: "Pacific",
   tzhash: {
     "Mountain":     -7,
     "Eastern":      -5,
-    "+00:30 India":  5,
-  }
-});
-```
-
-**Note:** There's no daylight savings feature yet. When the time comes, you
-gotta change affected values (along with all the clocks in your house). :O)
-
-### Displaying other _non-sleep_ events
-
-Use the `cellstyles` init property to add other events (work hours, etc.).
-For each event you want to add to the table, provide its name, its HTML
-"#" color value (either 3 or 6 hex digits), and the cell numbers to apply
-the event to. For the name, separate words with hyphens. In the color key
-that's displayed below the table, hyphens become spaces and the words are
-init-capped.
-
-Format of each entry: `"name": ["color", [list of cells]]`
-
-Example:
-
-```javascript
-SleepShift.init({
-  mytimezonename: "Pacific",
+    "+00:30 India":  5
+  },
   cellstyles: {
     "workout": ["6af",[37,91,149]],
     "my-work": ["6fd",[0,164,165,166,167]]
   }
 });
 ```
-
-"But wait, how do I know what the cell numbers are?" Good question. To see
-the cell numbers, turn on debug.
-
-```javascript
-SleepShift.debug = true;
-```
-
-### Other things you can change
-
-You can change the sleep color if you don't like purple.
-
-```javascript
-SleepShift.init({mytimezonename: "Pacific", sleepcolor: "777"});
-```
+The values in the `index.html` file were used to display the picture above.
 
 ## License
 
 [The MIT License (MIT)][lic]
 
+---
+<sup>1</sup>Sunrise and sunset are determined by your geolocation. And browser
+geolocation is only available from web pages hosted on a web server.
 
-[tz]: https://en.wikipedia.org/wiki/List_of_UTC_time_offsets
+
+[xkcd]: https://xkcd.com/320/
+[tz]: 
 [lic]: LICENSE

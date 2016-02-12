@@ -8,7 +8,7 @@ var SleepShift = {
 
   debug:          false,
   title:          "My 28-hour days (with world clock)",
-  mytimezonename: "'unspecified'",
+  mytimezonename: "",
   sleepcolor:     "87a",
   cellstyles:     {},
   tzhash:         {},
@@ -61,9 +61,9 @@ var SleepShift = {
     houroffset = typeof houroffset !== 'undefined' ? houroffset : this.houroffset;
     SleepShift.setupDom();
     $("#sleepshift h1").html(this.title);
-    $("#sleepshift #mytz").html(
-      "The table's times are in the " + SleepShift.mytimezonename + " time zone"
-    );
+    var tzdisplay = this.mytimezonename ? "The table's times are in the "
+                  + this.mytimezonename + " time zone." : "";
+    $("#sleepshift #mytz").html(tzdisplay);
     var dhdr = ''; // for thead html
     var guts = ''; // for tbody html
     var dnames = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];

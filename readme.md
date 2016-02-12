@@ -38,7 +38,8 @@ it'll show sunrise and sunset.<sup><a href="#sup1">1</a></sup>
   </script>
   ```
 
-With that, you'll get a default [xkcd 28-hour day][xkcd] with no extras.
+With that, your table will show the same sleep times as the
+[xkcd 28-hour day][xkcd] comic, with no extras.
 
 ![xkcd comic 320 about 28-hour days][xkcdimg]
 

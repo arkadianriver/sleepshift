@@ -7,7 +7,6 @@
 var SleepShift = {
 
   debug:          false,
-
   title:          "My 28-hour days (with world clock)",
   mytimezonename: "'unspecified'",
   sleepcolor:     "87a",
@@ -21,18 +20,14 @@ var SleepShift = {
 
   totalCells:      0,
 
-  init: function(initObj)
+  init: function(obj)
   {
-    if (typeof initObj.title !== 'undefined')
-      SleepShift.title = initObj.title;
-    if (typeof initObj.mytimezonename !== 'undefined')
-      SleepShift.mytimezonename = initObj.mytimezonename;
-    if (typeof initObj.sleepcolor !== 'undefined')
-      SleepShift.sleepcolor = initObj.sleepcolor;
-    if (typeof initObj.cellstyles !== 'undefined')
-      SleepShift.cellstyles = initObj.cellstyles;
-    if (typeof initObj.tzhash !== 'undefined')
-      SleepShift.tzhash = initObj.tzhash;
+    $.each([ "debug", "title", "mytimezonename", "sleepcolor",
+             "cellstyles", "tzhash",
+             "hrsperday", "waketime", "houroffset"
+           ], function(_,val){
+      if (typeof obj[val] !== 'undefined') SleepShift[val] = obj[val];
+    });
   },
 
   setupDom: function()

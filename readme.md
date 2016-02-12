@@ -125,7 +125,7 @@ SleepShift.drawMyCal();
   <dd>Whatever you wanna call the table.</dd>
   <dt>mytimezonename</dt>
   <dd>Give your own time zone a name. Adds this sentence below the table:
-  "The table's times are in the <mytimezonename> time zone."</dd>
+  "The table's times are in the &lt;mytimezonename&gt; time zone."</dd>
   <dt>sleepcolor</dt>
   <dd>So, you don't like slate purple? Change it here, maybe something like
   gray "777" or "8a8a8a".</dd>

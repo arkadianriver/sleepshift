@@ -9,7 +9,11 @@ display any regular sleep schedule that fits evenly in a week.
 It's also got an hourly world clock. And, if you host it from a web server,
 it'll show sunrise and sunset.<sup><a href="#sup1">1</a></sup>
 
+---
+
 ![picture of the sleepshift calendar](sleepshift.png)
+
+---
 
 ## To use it
 
@@ -37,9 +41,13 @@ it'll show sunrise and sunset.<sup><a href="#sup1">1</a></sup>
     });
   </script>
   ```
-With that, you'll get a default [xkcd 28-hour day][xkcd] with no extras.
 
-### Tweaking the sleep hours
+With that, your table will show the same sleep times as the
+[xkcd 28-hour day][xkcd] comic, with no extras.
+
+![xkcd comic 320 about 28-hour days][xkcdimg]
+
+## Tweaking the sleep hours
 
 You can add values to `drawMyCal()` to change the length and shift the
 times of your days.
@@ -76,7 +84,7 @@ The default with no values is the same as:
 SleepShift.drawMyCal(28, 20, -6);
 ```
 
-### Displaying other things
+## Showing more stuff
 
 To customize it further, you can use the `init()` function before running
 `drawMyCal()`.
@@ -89,9 +97,9 @@ SleepShift.init({
   sleepcolor: "777",
   mytimezonename: "Eastern",
   tzhash: {
-    "Mountain":     -7,
-    "Frankfurt":     1,
-    "+00:30 India":  5
+    "Central":     -7,
+    "Kristina":     1,
+    "+00:30 Ravi":  5
   },
   cellstyles: {
     "workout": ["6af",[37,91,149]],
@@ -116,14 +124,16 @@ SleepShift.drawMyCal();
   <dt>title</dt>
   <dd>Whatever you wanna call the table.</dd>
   <dt>mytimezonename</dt>
-  <dd>Where you're at. Prints a statement below the table with this value.</dd>
+  <dd>Give your own time zone a name. Adds this sentence below the table:
+  "The table's times are in the <mytimezonename> time zone."</dd>
   <dt>sleepcolor</dt>
   <dd>So, you don't like slate purple? Change it here, maybe something like
   gray "777" or "8a8a8a".</dd>
   <dt>tzhash</dt>
   <dd>The cell with the current GMT (black border) and the cell with the viewer's
-  local time (blue border) are displayed automatically. To have other time zones
-  listed at their current hour, list each with a name of your choice and
+  LOCAL time (blue border) are displayed automatically. To have other time zones
+  listed at their current hour (say, if you work with a global team), list each
+  zone with a name of your choice and
   <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">its
   hour offset</a>.
   <p>And, sorry, there's no daylight savings feature yet. When the time comes,
@@ -148,12 +158,12 @@ So, there ya go. Have fun!
 
 ---
 <a name="sup1"></a><sup>1</sup>Sunrise and sunset are determined by your geolocation.
-And browser geolocation is only available from web pages hosted on a web server.
+And browser geolocation is not always available unless the web page is hosted on a web
+server. Yeah, don't holler at me, that's just the way it works. You can, of course,
+install a web server on your local machine and host it from there.
 
-## License
-
-[The MIT License (MIT)][lic]
 
 
 [xkcd]: https://xkcd.com/320/
+[xkcdimg]: http://imgs.xkcd.com/comics/28_hour_day.png
 [lic]: LICENSE

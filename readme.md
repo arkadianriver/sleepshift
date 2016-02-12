@@ -9,7 +9,11 @@ display any regular sleep schedule that fits evenly in a week.
 It's also got an hourly world clock. And, if you host it from a web server,
 it'll show sunrise and sunset.<sup><a href="#sup1">1</a></sup>
 
+---
+
 ![picture of the sleepshift calendar](sleepshift.png)
+
+---
 
 ## To use it
 

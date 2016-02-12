@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>SleepShift by arkadianriver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">SleepShift</h1>
+      <h2 class="project-tagline">Display a week of 21, 24, or 28-hour days (with a world clock)</h2>
+      <a href="https://github.com/arkadianriver/sleepshift" class="btn">View on GitHub</a>
+      <a href="https://github.com/arkadianriver/sleepshift/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/arkadianriver/sleepshift/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>Originally created to shift the sleep times of my 28-hour days to find
+the right schedule that worked for me. But you can adjust the numbers to
+display any regular sleep schedule that fits evenly in a week.</p>
+
+<p>It's also got an hourly world clock. And, if you host it from a web server,
+it'll show sunrise and sunset.<sup><a href="#sup1">1</a></sup></p>
+
+<hr>
+
+<p><img src="sleepshift.png" alt="picture of the sleepshift calendar"></p>
+
+<hr>
+
+<h2>
+<a id="to-use-it" class="anchor" href="#to-use-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>To use it</h2>
+
+<ol>
+<li><p>Throw these files on a web server: <code>sleepshift.js</code>, <code>sleepshift.css</code></p></li>
+<li>
+<p>Slap this code in your web page:</p>
+
+<p>In the header:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/css<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>sleepshift.css<span class="pl-pds">"</span></span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>sleepshift.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p>In the body, where you want it displayed:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>sleepshift<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p>In the body, at the very bottom:</p>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1">  <span class="pl-en">$</span>(<span class="pl-c1">document</span>).<span class="pl-en">ready</span>(<span class="pl-k">function</span>(){</span>
+<span class="pl-s1">    <span class="pl-smi">SleepShift</span>.<span class="pl-en">drawMyCal</span>();</span>
+<span class="pl-s1">  });</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+</li>
+</ol>
+
+<p>With that, your table will show the same sleep times as the
+<a href="https://xkcd.com/320/">xkcd 28-hour day</a> comic, with no extras.</p>
+
+<p><img src="http://imgs.xkcd.com/comics/28_hour_day.png" alt="xkcd comic 320 about 28-hour days"></p>
+
+<h2>
+<a id="tweaking-the-sleep-hours" class="anchor" href="#tweaking-the-sleep-hours" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tweaking the sleep hours</h2>
+
+<p>You can add values to <code>drawMyCal()</code> to change the length and shift the
+times of your days.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">SleepShift</span>.<span class="pl-en">drawMyCal</span>(totalhours, wakehours, offset)</pre></div>
+
+<dl>
+  <dt>totalhours</dt>
+  <dd>The total hours in <i>your</i> day. Not necessarily 24.
+  Reasonable day lengths that fit evenly in a normal 168 hour week are:
+  12, 14, 21, 24, and 28.</dd>
+  
+  <dt>wakehours</dt>
+  <dd>Number of hours in <i>your</i> day that you want to be awake.</dd>
+
+  <dt>offset</dt>
+  <dd>The week starts at 00:00 Monday (cell 0). Adjust the offset
+  to the hour on -Sun or +Mon when you first wake up during the
+  week. Examples:
+  <ul>
+<li>To start your week at midnight Sunday, use 0.</li>
+      <li>To start your week at 8 a.m. on Monday, use 8.</li>
+      <li>To start your week at 7 p.m. on Sunday, use -5.</li>
+  </ul>
+</dd>
+</dl>
+
+<p>A normal person's week ;-)</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">SleepShift</span>.<span class="pl-en">drawMyCal</span>(<span class="pl-c1">24</span>, <span class="pl-c1">16</span>, <span class="pl-c1">7</span>);</pre></div>
+
+<p>The default with no values is the same as:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">SleepShift</span>.<span class="pl-en">drawMyCal</span>(<span class="pl-c1">28</span>, <span class="pl-c1">20</span>, <span class="pl-k">-</span><span class="pl-c1">6</span>);</pre></div>
+
+<h2>
+<a id="showing-more-stuff" class="anchor" href="#showing-more-stuff" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Showing more stuff</h2>
+
+<p>To customize it further, you can use the <code>init()</code> function before running
+<code>drawMyCal()</code>.</p>
+
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">SleepShift</span>.<span class="pl-en">init</span>({
+  title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>My crazy week<span class="pl-pds">"</span></span>,
+  sleepcolor<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>777<span class="pl-pds">"</span></span>,
+  mytimezonename<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Eastern<span class="pl-pds">"</span></span>,
+  tzhash<span class="pl-k">:</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>Central<span class="pl-pds">"</span></span><span class="pl-k">:</span>     <span class="pl-k">-</span><span class="pl-c1">7</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>Kristina<span class="pl-pds">"</span></span><span class="pl-k">:</span>     <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>+00:30 Ravi<span class="pl-pds">"</span></span><span class="pl-k">:</span>  <span class="pl-c1">5</span>
+  },
+  cellstyles<span class="pl-k">:</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>workout<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>6af<span class="pl-pds">"</span></span>,[<span class="pl-c1">37</span>,<span class="pl-c1">91</span>,<span class="pl-c1">149</span>]],
+    <span class="pl-s"><span class="pl-pds">"</span>my-work<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>6fd<span class="pl-pds">"</span></span>,[<span class="pl-c1">0</span>,<span class="pl-c1">164</span>,<span class="pl-c1">165</span>,<span class="pl-c1">166</span>,<span class="pl-c1">167</span>]]
+  }
+});
+<span class="pl-smi">SleepShift</span>.<span class="pl-en">drawMyCal</span>();</pre></div>
+
+<h3>
+<a id="reference" class="anchor" href="#reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reference</h3>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Format</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>"My 28-hour days (with world clock)"</td>
+</tr>
+<tr>
+<td>mytimezonename</td>
+<td>string</td>
+<td>""</td>
+</tr>
+<tr>
+<td>sleepcolor</td>
+<td>string - "0x[0x]0x[0x]0x[0x]"</td>
+<td>"87a"</td>
+</tr>
+<tr>
+<td>tzhash</td>
+<td>object - { "time zone name": signed-integer offset, ... }</td>
+<td>{}</td>
+</tr>
+<tr>
+<td>cellstyles</td>
+<td>object - { "name": ["color", [list of cells]], ... }</td>
+<td>{}</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+
+<dl>
+  <dt>title</dt>
+  <dd>Whatever you wanna call the table.</dd>
+  <dt>mytimezonename</dt>
+  <dd>Give your own time zone a name. Adds this sentence below the table:
+  "The table's times are in the &lt;mytimezonename&gt; time zone."</dd>
+  <dt>sleepcolor</dt>
+  <dd>So, you don't like slate purple? Change it here, maybe something like
+  gray "777" or "8a8a8a".</dd>
+  <dt>tzhash</dt>
+  <dd>The cell with the current GMT (black border) and the cell with the viewer's
+  LOCAL time (blue border) are displayed automatically. To have other time zones
+  listed at their current hour (say, if you work with a global team), list each
+  zone with a name of your choice and
+  <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">its
+  hour offset</a>.
+  <p>And, sorry, there's no daylight savings feature yet. When the time comes,
+  you gotta change affected values (along with all the clocks in your house).
+  :O)</p>
+</dd>
+  <dt>cellstyles</dt>
+  <dd>Use this property to add other events (work hours, etc.).
+  For each event you want to add to the table, provide its name, separating
+  multi-word names with hyphens. (In the color key that's displayed below the
+  table, hyphens become spaces and the words are init-capped.) With each name,
+  provide an HTML "#" color value (either 3 or 6 hex digits) and the cell numbers
+  to apply the event to.</dd>
+  <dt>debug</dt>
+  <dd>"But wait, how do I know what the cell numbers are?" Great question.
+  To see the cell numbers, set debug to true.</dd>
+</dl>
+
+<p>For a more complete example, the values in the <a href="index.html"><code>index.html</code></a> file were
+used to display the picture above.</p>
+
+<p>So, there ya go. Have fun!</p>
+
+<hr>
+
+<p><a name="sup1"></a><sup>1</sup>Sunrise and sunset are determined by your geolocation.
+And browser geolocation is not always available unless the web page is hosted on a web
+server. Yeah, don't holler at me, that's just the way it works. You can, of course,
+install a web server on your local machine and host it from there.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/arkadianriver/sleepshift">SleepShift</a> is maintained by <a href="https://github.com/arkadianriver">arkadianriver</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-73743404-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>

@@ -57,9 +57,10 @@ SleepShift.drawMyCal(totalhours, wakehours, offset)
   <dd>Number of hours in <i>your</i> day that you want to be awake.</dd>
 
   <dt>offset</dt>
-  <dd>Adjust -n/n to the hour -Sun or +Mon that you want your
-  week to start. Examples:
-  <ul><li>To start your week at midnight Monday, use 0.</li>
+  <dd>The week starts at 00:00 Monday (cell 0). Adjust the offset
+  to the hour on -Sun or +Mon when you first wake up during the
+  week. Examples:
+  <ul><li>To start your week at midnight Sunday, use 0.</li>
       <li>To start your week at 8 a.m. on Monday, use 8.</li>
       <li>To start your week at 7 p.m. on Sunday, use -5.</li>
   </ul></dd>
@@ -120,25 +121,30 @@ SleepShift.drawMyCal();
   <dd>So, you don't like slate purple? Change it here, maybe something like
   gray "777" or "8a8a8a".</dd>
   <dt>tzhash</dt>
-  <dd>To have a time zone shown on the hourly world clock, give it a name,
-  <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">determine
-  its hour offset</a>, and add 'em to this list.
-  <p><b>Note:</b> There's no daylight savings feature yet. When the time comes,
+  <dd>The cell with the current GMT (black border) and the cell with the viewer's
+  local time (blue border) are displayed automatically. To have other time zones
+  listed at their current hour, list each with a name of your choice and
+  <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">its
+  hour offset</a>.
+  <p>And, sorry, there's no daylight savings feature yet. When the time comes,
   you gotta change affected values (along with all the clocks in your house).
   :O)</p></dd>
   <dt>cellstyles</dt>
   <dd>Use this property to add other events (work hours, etc.).
-  For each event you want to add to the table, provide its name, its HTML
-  "#" color value (either 3 or 6 hex digits), and the cell numbers to apply
-  the event to. For the name, separate words with hyphens. In the color key
-  that's displayed below the table, hyphens become spaces and the words are
-  init-capped.</dd>
+  For each event you want to add to the table, provide its name, separating
+  multi-word names with hyphens. (In the color key that's displayed below the
+  table, hyphens become spaces and the words are init-capped.) With each name,
+  provide an HTML "#" color value (either 3 or 6 hex digits) and the cell numbers
+  to apply the event to.</dd>
   <dt>debug</dt>
   <dd>"But wait, how do I know what the cell numbers are?" Great question.
   To see the cell numbers, set debug to true.</dd>
 </dl>
 
-The values in the [`index.html`](index.html) file were used to display the picture above.
+For a more complete example, the values in the [`index.html`](index.html) file were
+used to display the picture above.
+
+So, there ya go. Have fun!
 
 ---
 <a name="sup1"></a><sup>1</sup>Sunrise and sunset are determined by your geolocation.

@@ -41,7 +41,7 @@ With that, you'll get a default [xkcd 28-hour day][xkcd] with no extras.
 
 ### Tweaking the sleep hours
 
-You can add values to `SleepShift.drawMyCal()`.
+You can add values to `drawMyCal()` to change your day lengths and shift times.
 ```javascript
 SleepShift.drawMyCal(totalhours, wakehours, offset)
 ```
@@ -76,8 +76,31 @@ SleepShift.drawMyCal(28, 20, -6);
 
 ### Displaying other things
 
-You can initialize SleepShift with these properties before `drawMyCal()`
-is run.
+To customize it further, you can use the `init()` function before running
+`drawMyCal()`.
+
+#### Example
+
+```javascript
+SleepShift.init({
+  title: "My normal week",
+  sleepcolor: "777",
+  mytimezonename: "Eastern",
+  tzhash: {
+    "Mountain":     -7,
+    "Frankfurt":     1,
+    "+00:30 India":  5
+  },
+  cellstyles: {
+    "workout": ["6af",[37,91,149]],
+    "my-work": ["6fd",[0,164,165,166,167]]
+  },
+  debug: false
+});
+SleepShift.drawMyCal();
+```
+
+#### Reference
 
 |    Property    |                      Format                               |
 | -------------- | --------------------------------------------------------- |
@@ -94,12 +117,12 @@ is run.
   <dt>mytimezonename</dt>
   <dd>Where you're at. Prints a statement below the table with this value.</dd>
   <dt>sleepcolor</dt>
-  <dd>So, you don't like slate purple, eh? Change it here, maybe something like
-  gray "777" or "8a8a8a"?</dd>
+  <dd>So, you don't like slate purple? Change it here, maybe something like
+  gray "777" or "8a8a8a".</dd>
   <dt>tzhash</dt>
   <dd>To have a time zone shown on the hourly world clock, give it a name,
-  determine <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">its
-  hour offset</a>, and add 'em to this list.
+  <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">determine
+  its hour offset</a>, and add 'em to this list.
   <p><b>Note:</b> There's no daylight savings feature yet. When the time comes,
   you gotta change affected values (along with all the clocks in your house).
   :O)</p></dd>
@@ -115,26 +138,7 @@ is run.
   To see the cell numbers, set debug to true.</dd>
 </dl>
 
-#### Example
-
-```javascript
-SleepShift.init({
-  title: "My normal week",
-  sleepcolor: "777",
-  mytimezonename: "Eastern",
-  tzhash: {
-    "Mountain":     -7,
-    "Eastern":      -5,
-    "+00:30 India":  5
-  },
-  cellstyles: {
-    "workout": ["6af",[37,91,149]],
-    "my-work": ["6fd",[0,164,165,166,167]]
-  },
-  debug: false
-});
-```
-The values in the `index.html` file were used to display the picture above.
+The values in the [`index.html`](index.html) file were used to display the picture above.
 
 ---
 <a name="sup1"></a><sup>1</sup>Sunrise and sunset are determined by your geolocation.

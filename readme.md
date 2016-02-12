@@ -99,7 +99,7 @@ is run.
   <dt>tzhash</dt>
   <dd>To have a time zone shown on the hourly world clock, give it a name,
   determine <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">its
-  hour offset</a>, and add 'em to this list.</dd>
+  hour offset</a>, and add 'em to this list.
   <p><b>Note:</b> There's no daylight savings feature yet. When the time comes,
   you gotta change affected values (along with all the clocks in your house).
   :O)</p></dd>

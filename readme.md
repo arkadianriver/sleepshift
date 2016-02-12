@@ -92,9 +92,9 @@ SleepShift.init({
   sleepcolor: "777",
   mytimezonename: "Eastern",
   tzhash: {
-    "Mountain":     -7,
-    "Frankfurt":     1,
-    "+00:30 India":  5
+    "Central":     -7,
+    "Kristina":     1,
+    "+00:30 Ravi":  5
   },
   cellstyles: {
     "workout": ["6af",[37,91,149]],
@@ -119,14 +119,16 @@ SleepShift.drawMyCal();
   <dt>title</dt>
   <dd>Whatever you wanna call the table.</dd>
   <dt>mytimezonename</dt>
-  <dd>Where you're at. Prints a statement below the table with this value.</dd>
+  <dd>Give your own time zone a name. Adds this sentence below the table:
+  "The table's times are in the <mytimezonename> time zone."</dd>
   <dt>sleepcolor</dt>
   <dd>So, you don't like slate purple? Change it here, maybe something like
   gray "777" or "8a8a8a".</dd>
   <dt>tzhash</dt>
   <dd>The cell with the current GMT (black border) and the cell with the viewer's
-  local time (blue border) are displayed automatically. To have other time zones
-  listed at their current hour, list each with a name of your choice and
+  LOCAL time (blue border) are displayed automatically. To have other time zones
+  listed at their current hour (say, if you work with a global team), list each
+  zone with a name of your choice and
   <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">its
   hour offset</a>.
   <p>And, sorry, there's no daylight savings feature yet. When the time comes,

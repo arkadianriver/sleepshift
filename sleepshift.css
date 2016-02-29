@@ -3,7 +3,7 @@
 #sleepshift th,
 #sleepshift td,
 #sleepshift .colorkey,
-#sleepshift #debug {
+#sleepshift * {
   font: 8pt Tahoma, Helvetica;
 }
 #sleepshift h1 {
@@ -13,11 +13,12 @@
   border:3px solid #000;
   border-spacing:0;
   border-collapse:collapse;
+  width: 100%;
 }
 #sleepshift th,
 #sleepshift td {
   border:1px solid #f69;
-  width:90px;
+  width:14.2%;
   margin:0;
   padding:2px;
 }
@@ -32,7 +33,7 @@
   border: solid 3px #00d;
 }
 #sleepshift #colorkey {
-  width: 630px;
+  width: 100%;
 }
 #sleepshift .colorkey {
   width: 120px;

@@ -116,7 +116,7 @@ SleepShift.drawMyCal();
 | -------------- | --------------------------------------------------------- | ------------------------------------ |
 | title          | string                                                    | "My 28-hour days (with world clock)" |
 | mytimezonename | string                                                    | ""                                   |
-| sleepcolor     | string - "0x[0x]0x[0x]0x[0x]"                             | "87a"                                |
+| sleepcolor     | string - "0x0x0x[0x0x0x]"                                 | "87a"                                |
 | tzhash         | object - { "time zone name": signed-integer offset, ... } | {}                                   |
 | cellstyles     | object - { "name": ["color", [list of cells]], ... }      | {}                                   |
 | debug          | boolean                                                   | false                                |

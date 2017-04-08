@@ -18,30 +18,30 @@ it'll show sunrise and sunset.<sup><a href="#sup1">1</a></sup>
 
 ## To use it
 
-0. Throw these files on a web server: `sleepshift.js`, `sleepshift.css`
+1. Throw these files on a web server: `sleepshift.js`, `sleepshift.css`
 
-0. Slap this code in your web page:
+1. Slap this code in your web page:
 
-  In the header:
-  ```html
-  <link rel="stylesheet" type="text/css" href="sleepshift.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script type="text/javascript" src="sleepshift.js"></script>
-  ```
+   In the header:
+   ```html
+   <link rel="stylesheet" type="text/css" href="sleepshift.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+   <script type="text/javascript" src="sleepshift.js"></script>
+   ```
 
-  In the body, where you want it displayed:
-  ```html
-  <div id="sleepshift"></div>
-  ```
+   In the body, where you want it displayed:
+   ```html
+   <div id="sleepshift"></div>
+   ```
 
-  In the body, at the very bottom:
-  ```html
-  <script type="text/javascript">
-    $(document).ready(function(){
-      SleepShift.drawMyCal();
-    });
-  </script>
-  ```
+   In the body, at the very bottom:
+   ```html
+   <script type="text/javascript">
+     $(document).ready(function(){
+       SleepShift.drawMyCal();
+     });
+   </script>
+   ```
 
 With that, your table will show the same sleep times as the
 [xkcd 28-hour day][xkcd] comic, with no extras.

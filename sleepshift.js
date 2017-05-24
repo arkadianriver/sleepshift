@@ -44,7 +44,6 @@ var SleepShift = {
       "        <thead><tr id='rhdr'></tr></thead>",
       "        <tbody></tbody>",
       "      </table>",
-      "      <p id='mytz'></p>",
       "      <div id='debug'></div>",
       "      <div id='colorkey'></div>",
       "      <div style='clear:both'></div>"
@@ -61,9 +60,8 @@ var SleepShift = {
     houroffset = typeof houroffset !== 'undefined' ? houroffset : this.houroffset;
     SleepShift.setupDom();
     $("#sleepshift h1").html(this.title);
-    var tzdisplay = this.mytimezonename ? "The table's times are in the "
-                  + this.mytimezonename + " time zone." : "";
-    $("#sleepshift #mytz").html(tzdisplay);
+    var tzdisplay = this.mytimezonename ? " applied to the "
+                  + this.mytimezonename + " time zone" : "";
     var dhdr = ''; // for thead html
     var guts = ''; // for tbody html
     var dnames = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
@@ -100,7 +98,7 @@ var SleepShift = {
     this.drawOverlays();
     this.setLocalTimezone();
     this.drawTimeZones();
-    this.drawColorKey();
+    this.drawColorKey(tzdisplay);
     if (this.debug) this.drawDebug(this.tzhash);
   },
 
@@ -218,8 +216,8 @@ var SleepShift = {
   /**
    * Use cellstyles{} to print color key.
    */
-  drawColorKey: function() {
-    var guts = '<p><b>Color key:</b></p>';
+  drawColorKey: function(mytimezone) {
+    var guts = '<p><b>Color key' + mytimezone + ':</b></p>';
     $.each(this.cellstyles,function(stylename, arr){
       var str = stylename.replace(/-/g, " ").replace(/\b\w+/g,function(s){
         return s.charAt(0).toUpperCase() + s.substr(1).toLowerCase();

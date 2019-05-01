@@ -3,7 +3,7 @@
 > Display a week of 21, 24, or 28-hour days (with a world clock)
 
 Originally created to shift the sleep times of my
-[28-hour days](http://arkadianriver.com/topics/28-hour-days.html), to find
+[28-hour days](http://arkadianriver.com/topics/28-hour-days/), to find
 the right schedule that worked for me. But you can adjust the numbers to
 display any regular sleep schedule that fits evenly in a week.
 
